@@ -448,9 +448,10 @@
 					self.shuffled = shuffled;
 					current = self.playlist[self.current]
 					if(shuffled) {
-						self.playlist.sort(function() {
-							return 0.5 - Math.random();
-						});
+						for (var tmp, cur, top=self.playlist.length; top--;){
+							cur = (Math.random() * (top + 1)) << 0;
+							tmp = self.playlist[cur]; self.playlist[cur] = self.playlist[top]; self.playlist[top] = tmp;
+						}
 					} else {
 						self._originalPlaylist();
 					}
